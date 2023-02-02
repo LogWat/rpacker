@@ -222,7 +222,7 @@ fn compile_unpacker(input: &str, output: &str, params: &Vec<String>) -> Result<(
     let default_params = 
     ["-Wl,--entry=__start", "-nostartfiles", "-nostdlib",
     "-fno-ident", "-fno-asynchronous-unwind-tables", "-fno-unwind-tables",
-    "-lkernel32"];
+    "-lkernel32", "-Wl,-s"];
     for param in default_params.iter() {
         cmd.arg(param);
     }
@@ -239,7 +239,6 @@ fn compile_unpacker(input: &str, output: &str, params: &Vec<String>) -> Result<(
         println!("Error: {}", String::from_utf8_lossy(&res.stderr));
         return Err(Error::new(std::io::ErrorKind::InvalidData, "Failed to compile unpacker"));
     }
-    let _cmd = Command::new("strip").arg(output).output().expect("failed to execute process");
 
     Ok(())
 }
