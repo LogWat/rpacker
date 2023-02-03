@@ -152,13 +152,6 @@ fn encode_tree(tree: &Tree) -> Bits {
 }
 
 pub fn encode(plane: &[u8]) -> Bits {
-
-    let mut mymap = HashMap::new();
-    for &char in plane {
-        let count = mymap.entry(char).or_insert(0);
-        *count += 1;
-    }
-
     let mut heap = evaluate_weight(plane);
     let tree = generate_tree(&mut heap);
     let char_bits_map = generate_char_bits_map(&tree);
