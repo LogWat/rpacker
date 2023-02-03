@@ -222,7 +222,7 @@ fn compile_unpacker(input: &str, output: &str, params: &Vec<String>) -> Result<(
     let default_params = 
     ["-Wl,--entry=__start", "-nostartfiles", "-nostdlib",
     "-fno-ident", "-fno-asynchronous-unwind-tables", "-fno-unwind-tables",
-    "-lkernel32", "-Wl,-s"];
+    "-lkernel32", "-Os", "-Wl,-s"];
     for param in default_params.iter() {
         cmd.arg(param);
     }
